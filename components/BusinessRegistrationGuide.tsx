@@ -38,8 +38,8 @@ const BusinessRegistrationGuide = () => {
 
       <div className="flex justify-center mb-12">
         <div className="flex bg-white border border-primary/20 rounded-full p-1">
-          <TabButton tabKey="structure">Choose Structure</TabButton>
-          <TabButton tabKey="process">Registration Process</TabButton>
+          <TabButton tabKey="structure">1. Choose Structure</TabButton>
+          <TabButton tabKey="process">2. Registration Process</TabButton>
         </div>
       </div>
 

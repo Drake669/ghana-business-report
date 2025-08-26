@@ -77,7 +77,7 @@ const ImageCard = ({
   </div>
 );
 
-const MarqueeRow = ({ images }: { images: typeof marqueeImages }) => (
+export const MarqueeRow = ({ images }: { images: typeof marqueeImages }) => (
   <div className="flex items-center gap-0">
     {images.map((image, index) => (
       <ImageCard
@@ -91,7 +91,7 @@ const MarqueeRow = ({ images }: { images: typeof marqueeImages }) => (
   </div>
 );
 
-const marqueeImages = [
+export const marqueeImages = [
   {
     src: "/Smiling woman.jpg",
     alt: "Smiling woman",

@@ -1,0 +1,246 @@
+"use client";
+
+import { useState } from "react";
+
+interface TabButtonProps {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+interface ListItemProps {
+  children: React.ReactNode;
+}
+
+interface InfoCardProps {
+  title: string;
+  items: string[];
+  imageSrc: string;
+  imageAlt: string;
+}
+
+interface MobileMoneyCardProps {
+  logo: string;
+  title: string;
+  subtitle: string;
+}
+
+interface MobileMoneyProvider {
+  logo: string;
+  title: string;
+  subtitle: string;
+}
+
+interface Tab {
+  id: string;
+  label: string;
+  component: React.ComponentType;
+}
+
+type TabId = "banking" | "funding" | "mobile-money";
+
+const TabButton: React.FC<TabButtonProps> = ({ active, onClick, children }) => (
+  <button
+    onClick={onClick}
+    className={`px-6 py-4 font-medium rounded-full transition-colors ${
+      active ? "bg-primary text-white shadow-sm" : "text-gray-500"
+    }`}
+  >
+    {children}
+  </button>
+);
+
+const ListItem: React.FC<ListItemProps> = ({ children }) => (
+  <li className="flex items-start gap-3">
+    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+    {children}
+  </li>
+);
+
+const InfoCard: React.FC<InfoCardProps> = ({
+  title,
+  items,
+  imageSrc,
+  imageAlt,
+}) => (
+  <div className="flex-1 border border-gray-200 rounded-2xl p-6 bg-white">
+    <div className="flex gap-6 items-start">
+      <div className="flex-1">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6">{title}</h3>
+        <ul className="space-y-3 text-gray-600">
+          {items.map((item: string, index: number) => (
+            <ListItem key={index}>{item}</ListItem>
+          ))}
+        </ul>
+      </div>
+      <div className="w-48 flex-shrink-0">
+        <div className="rounded-2xl overflow-hidden">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="w-full h-48 object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const MobileMoneyCard: React.FC<MobileMoneyCardProps> = ({
+  logo,
+  title,
+  subtitle,
+}) => (
+  <div className="border border-gray-200 rounded-2xl p-6 bg-white text-center">
+    <div className="w-16 h-16 bg-gray-100 shadow rounded-2xl flex items-center justify-center mx-auto mb-4">
+      <img src={logo} alt={title} className="w-12 h-10" />
+    </div>
+    <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+    <p className="text-gray-600">{subtitle}</p>
+  </div>
+);
+
+const BankingTab: React.FC = () => {
+  const bankAccountRequirements: string[] = [
+    "Certificate of Incorporation",
+    "Company regulations",
+    "Board resolution",
+    "Ghana Cards of directors",
+    "Business address proof",
+    "Tax Identification Number (TIN)",
+  ];
+
+  const smeFriendlyBanks: string[] = [
+    "Absa Bank Ghana - SME Focus",
+    "Stanbic Bank - Business Banking",
+    "Cal Bank - SME Solutions",
+    "Access Bank - Business Support",
+  ];
+
+  return (
+    <div className="flex gap-12 lg:gap-16">
+      <InfoCard
+        title="Business Bank Account Requirements"
+        items={bankAccountRequirements}
+        imageSrc="/person-signing-business-documents-at-desk.jpg"
+        imageAlt="Person signing business documents"
+      />
+      <InfoCard
+        title="SME-Friendly Banks"
+        items={smeFriendlyBanks}
+        imageSrc="/business-handshake-in-office-setting.jpg"
+        imageAlt="Business handshake"
+      />
+    </div>
+  );
+};
+
+const FundingTab: React.FC = () => {
+  const governmentPrograms: string[] = [
+    "Ghana Investment Platform (GIP)",
+    "Presidential Pitch Competition",
+    "MASLOC (Microfinance and Small Loans Centre)",
+    "Youth Enterprise Support (YES)",
+  ];
+
+  const privateInvestment: string[] = [
+    "Angel Investor Networks",
+    "Venture Capital Firms",
+    "Tech Incubators",
+    "Diaspora Investment Groups",
+  ];
+
+  return (
+    <div className="flex gap-12 lg:gap-16">
+      <InfoCard
+        title="Government Programs"
+        items={governmentPrograms}
+        imageSrc="/woman-presenting-business-charts-in-office.jpg"
+        imageAlt="Woman presenting business charts"
+      />
+      <InfoCard
+        title="Private Investment"
+        items={privateInvestment}
+        imageSrc="/two-professional-women-in-business-attire.jpg"
+        imageAlt="Two professional women in business attire"
+      />
+    </div>
+  );
+};
+
+const MobileMoneyTab: React.FC = () => {
+  const providers: MobileMoneyProvider[] = [
+    {
+      logo: "/mtn-logo.jpg",
+      title: "MTN MoMo",
+      subtitle: "Market Leader",
+    },
+    {
+      logo: "/at-money.png",
+      title: "AirtelTigo",
+      subtitle: "Growing Network",
+    },
+    {
+      logo: "/telecel-cash.webp",
+      title: "Telecel Cash",
+      subtitle: "Business Focus",
+    },
+  ];
+
+  return (
+    <div className="space-y-12">
+      <div className="grid md:grid-cols-3 gap-8">
+        {providers.map((provider: MobileMoneyProvider, index: number) => (
+          <MobileMoneyCard key={index} {...provider} />
+        ))}
+      </div>
+      <div className="text-center">
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          Mobile Money Integration
+        </h3>
+        <p className="text-gray-600 text-lg">
+          Ghana Is One Of Africa&apos;s Most Mobile-Money-Active Markets!
+          Essential Platforms Include:
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const BankingSection: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<TabId>("banking");
+
+  const tabs: Tab[] = [
+    { id: "banking", label: "Banking", component: BankingTab },
+    { id: "funding", label: "Funding", component: FundingTab },
+    { id: "mobile-money", label: "Mobile Money", component: MobileMoneyTab },
+  ];
+
+  const ActiveComponent = tabs.find(
+    (tab: Tab) => tab.id === activeTab
+  )?.component;
+
+  return (
+    <div className="mt-24">
+      <div className="flex justify-center mb-12">
+        <div className="flex bg-gray-100 rounded-full p-1">
+          {tabs.map((tab: Tab) => (
+            <TabButton
+              key={tab.id}
+              active={activeTab === tab.id}
+              onClick={() => setActiveTab(tab.id as TabId)}
+            >
+              {tab.label}
+            </TabButton>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto">
+        {ActiveComponent && <ActiveComponent />}
+      </div>
+    </div>
+  );
+};
+
+export default BankingSection;
