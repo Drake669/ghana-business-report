@@ -13,7 +13,10 @@ export async function POST(req: Request) {
         },
       });
 
-      if (existingPotentialCustomer) {
+      if (
+        existingPotentialCustomer?.phone === phone &&
+        existingPotentialCustomer?.email === email
+      ) {
         return NextResponse.json(existingPotentialCustomer, { status: 200 });
       }
     }
