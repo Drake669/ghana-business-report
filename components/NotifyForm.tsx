@@ -67,7 +67,7 @@ export default function NotifyForm() {
         onChange={(e) =>
           setNotifyInfo({ ...notifyInfo, phone: e.target.value })
         }
-        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 my-4 transition"
+        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 my-4 transition text-slate-900"
         required
       />
 
@@ -79,7 +79,7 @@ export default function NotifyForm() {
         onChange={(e) =>
           setNotifyInfo({ ...notifyInfo, email: e.target.value })
         }
-        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 mb-4 transition"
+        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 mb-4 transition text-slate-900"
         required
       />
 
