@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-import { marqueeImages, MarqueeRow } from "./Introsection";
+import { marqueeImages } from "./Introsection";
 import NotifyForm from "./NotifyForm";
 
 export default function WaitlistPage() {
@@ -53,7 +51,10 @@ export default function WaitlistPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Facebook className="w-6 h-6 text-slate-400 hover:text-white cursor-pointer" />
+              <img
+                src="/facebook.png"
+                className="w-6 h-6 cursor-pointer transition-all duration-200"
+              />
             </a>
 
             <a
@@ -61,7 +62,10 @@ export default function WaitlistPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Twitter className="w-6 h-6 text-slate-400 hover:text-white cursor-pointer" />
+              <img
+                src="/twitter.png"
+                className="w-6 h-6 cursor-pointer transition-all duration-200"
+              />
             </a>
 
             <a
@@ -69,7 +73,10 @@ export default function WaitlistPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Instagram className="w-6 h-6 text-slate-400 hover:text-white cursor-pointer" />
+              <img
+                src="/instagram.png"
+                className="w-6 h-6 cursor-pointer transition-all duration-200"
+              />
             </a>
 
             <a
@@ -77,7 +84,10 @@ export default function WaitlistPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Linkedin className="w-6 h-6 text-slate-400 hover:text-white cursor-pointer" />
+              <img
+                src="/linkedIn.png"
+                className="w-6 h-6 cursor-pointer transition-all duration-200"
+              />
             </a>
           </div>
         </div>
