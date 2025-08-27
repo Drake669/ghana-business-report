@@ -85,7 +85,7 @@ export default function WaitlistPage() {
               rel="noopener noreferrer"
             >
               <img
-                src="/linkedIn.png"
+                src="/linked.png"
                 className="w-6 h-6 cursor-pointer transition-all duration-200"
               />
             </a>
