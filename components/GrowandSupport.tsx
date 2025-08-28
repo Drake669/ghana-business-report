@@ -55,10 +55,10 @@ const RESOURCES_DATA: Record<string, ResourceData> = {
 };
 
 const ResourceCard: React.FC<ResourceCardProps> = ({ title, items, image }) => (
-  <div className="space-y-6">
-    <div>
+  <div className="space-y-6 border border-gray-200 rounded-2xl shadow-sm p-1 bg-white">
+    <div className="m-6">
       <h3 className="text-2xl font-bold text-gray-900 mb-6">{title}</h3>
-      <ul className="space-y-3 text-gray-600 mb-8">
+      <ul className="text-gray-600 mb-8">
         {items.map((item, index) => (
           <li key={index} className="flex items-start gap-3">
             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
@@ -71,7 +71,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ title, items, image }) => (
       <img
         src={image.src}
         alt={image.alt}
-        className="w-full h-64 object-cover"
+        className="w-full h-96 object-cover"
       />
     </div>
   </div>
@@ -79,7 +79,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ title, items, image }) => (
 
 const GrowthAndSupport: React.FC = () => {
   return (
-    <div className="mt-24">
+    <div className="mt-24 px-4 sm:px-6 lg:px-8">
       <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
         Growth & Support Resources
       </h2>
@@ -89,7 +89,7 @@ const GrowthAndSupport: React.FC = () => {
         to help you grow.
       </p>
 
-      <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
         {Object.values(RESOURCES_DATA).map((resource, index) => (
           <ResourceCard
             key={index}
