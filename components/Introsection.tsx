@@ -17,9 +17,9 @@ export default function IntroSection() {
         </div>
 
         <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 leading-16">
-          Start Your Dream
+          2025
           <br />
-          Business in Ghana
+          Ghana Business Report
         </h1>
 
         <p className="text-lg text-slate-600 mb-12 max-w-2xl leading-relaxed">
