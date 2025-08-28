@@ -140,10 +140,10 @@ const InfoCard: React.FC<InfoCardProps> = ({
       </div>
     </div>
 
-    <div className="hidden lg:flex h-full p-4 gap-6">
+    <div className="hidden lg:flex h-full p-1 gap-6">
       <div className="flex-1 flex flex-col ml-4 mt-3">
         <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
-        <ul className="space-y-2 text-gray-600">
+        <ul className="space-y-1 text-gray-600">
           {items.map((item: string, index: number) => (
             <ListItem key={index}>{item}</ListItem>
           ))}
