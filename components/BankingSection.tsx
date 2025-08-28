@@ -261,7 +261,7 @@ const BankingSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto lg:p-0 p-4">
         {ActiveComponent && <ActiveComponent />}
       </div>
     </div>
