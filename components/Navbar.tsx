@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -54,9 +55,11 @@ export default function Navbar() {
           </a>
         </nav>
 
-        <Button className="text-white px-8 py-6 rounded-full">
-          Get Started
-        </Button>
+        <Link href={"https://built.africa"}>
+          <Button className="text-white px-8 py-6 rounded-full">
+            Get Started
+          </Button>
+        </Link>
       </div>
     </header>
   );

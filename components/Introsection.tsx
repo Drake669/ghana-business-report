@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Zap, Download } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function IntroSection() {
   return (
@@ -29,17 +30,21 @@ export default function IntroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
-          <Button className="text-white py-6 rounded-full flex items-center gap-2">
-            <Zap className="w-4 h-4" />
-            Start your Journey Now
-          </Button>
-          <Button
-            variant="outline"
-            className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
-          >
-            <Download className="w-4 h-4" />
-            Download Full Report
-          </Button>
+          <Link href={"https://built.africa"}>
+            <Button className="text-white py-6 rounded-full flex items-center gap-2">
+              <Zap className="w-4 h-4" />
+              Start your Journey Now
+            </Button>
+          </Link>
+          <Link href="#download">
+            <Button
+              variant="outline"
+              className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
+            >
+              <Download className="w-4 h-4" />
+              Download Full Report
+            </Button>
+          </Link>
         </div>
       </main>
 

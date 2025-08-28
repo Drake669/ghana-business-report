@@ -1,7 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Download, FileText, Mail } from "lucide-react";
+import { Download, Mail } from "lucide-react";
+import axios, { isAxiosError } from "axios";
+import { slugify } from "@/lib/utils";
+import { toast } from "sonner";
 
 export default function ReportDownloadSection() {
   const [email, setEmail] = useState("");
@@ -14,59 +17,87 @@ export default function ReportDownloadSection() {
     if (!email) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      const updatedValues = {
+        email,
+        slug: slugify(email),
+      };
+
+      await axios.post(`/api/potentialcustomer/`, updatedValues);
+
+      // Success → download PDF
+      const link = document.createElement("a");
+      link.href = "/ghana-business-report.pdf";
+      link.download = "ghana-business-report.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("Report is downloading!");
+    } catch (error) {
+      if (isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          toast.error(error.response.data);
+        } else {
+          toast.error("An unexpected error occurred. Please try again.");
+        }
+      } else {
+        toast.error("Your request could not be completed. Please try again.");
+      }
+    } finally {
       setIsSubmitting(false);
-      // Here you would typically trigger the actual download
-      alert("Report download link sent to your email!");
-    }, 1500);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4 mt-24">
+    <section
+      id="download"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4 mt-24"
+    >
       <div className="w-full  mx-auto">
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
           <div className="grid lg:grid-cols-2 min-h-[600px]">
             <div className="bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-8 lg:p-12">
-              <div className="relative">
-                <div className="absolute -top-8 -left-8 w-24 h-24 bg-blue-100 rounded-full opacity-60"></div>
-                <div className="absolute -bottom-12 -right-6 w-32 h-32 bg-indigo-100 rounded-full opacity-40"></div>
+              <div className="relative w-full max-w-sm">
+                <div className="absolute -top-12 -left-10 w-32 h-32 bg-blue-200 rounded-full opacity-40 blur-2xl"></div>
+                <div className="absolute -bottom-16 -right-12 w-40 h-40 bg-indigo-300 rounded-full opacity-30 blur-3xl"></div>
 
-                {/* Main illustration */}
-                <div className="relative z-10">
-                  {/* Book/Report illustration */}
-                  <div className="w-80 h-60 perspective-1000">
-                    <div className="relative transform-style-preserve-3d rotate-y-12 rotate-x-3">
-                      {/* Book cover */}
-                      <div className="absolute inset-0 bg-white border-4 border-slate-300 rounded-r-lg shadow-2xl">
-                        <div className="p-8 h-full flex flex-col items-center justify-center">
-                          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <FileText className="w-8 h-8 text-white" />
-                          </div>
-                          <div className="space-y-2 w-full">
-                            <div className="h-2 bg-slate-200 rounded w-3/4 mx-auto"></div>
-                            <div className="h-2 bg-slate-200 rounded w-1/2 mx-auto"></div>
-                            <div className="h-2 bg-slate-200 rounded w-2/3 mx-auto"></div>
-                          </div>
-                        </div>
-                      </div>
+                <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-10 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                  <div className="p-6 space-y-6">
+                    <div className="flex items-center justify-between">
+                      <div className="h-3 w-20 bg-slate-200 rounded"></div>
+                      <div className="h-3 w-10 bg-slate-200 rounded"></div>
+                    </div>
 
-                      <div className="absolute inset-0 bg-slate-50 border-r-4 border-slate-200 rounded-r transform translate-x-1 -translate-y-1 shadow-xl -z-10">
-                        <div className="p-4 space-y-1 mt-8">
-                          {[...Array(12)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="h-1 bg-slate-300 rounded w-full opacity-60"
-                            ></div>
-                          ))}
-                        </div>
-                      </div>
+                    <div className="grid grid-cols-6 gap-2 h-24 items-end">
+                      {[40, 70, 55, 90, 60, 80].map((h, i) => (
+                        <div
+                          key={i}
+                          style={{ height: `${h}%` }}
+                          className="bg-blue-500 rounded-md"
+                        ></div>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      {[...Array(6)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="h-2 bg-slate-300 rounded w-full"
+                        ></div>
+                      ))}
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="h-2 bg-slate-200 rounded w-3/4"></div>
+                      <div className="h-2 bg-slate-200 rounded w-1/2"></div>
+                      <div className="h-2 bg-slate-200 rounded w-2/3"></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Side - Content */}
             <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-blue-900 text-white flex items-center p-8 lg:p-12">
               <div className="w-full max-w-md mx-auto">
                 <div className="space-y-8">
@@ -92,6 +123,7 @@ export default function ReportDownloadSection() {
                           onKeyDown={(e) =>
                             e.key === "Enter" && handleDownload(e)
                           }
+                          required
                         />
                       </div>
                     </div>
@@ -120,6 +152,6 @@ export default function ReportDownloadSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

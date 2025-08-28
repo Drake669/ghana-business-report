@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const BusinessRegistrationGuide = () => {
   const [activeTab, setActiveTab] = useState("structure");
@@ -102,9 +103,11 @@ const BusinessRegistrationGuide = () => {
                 compliance, we&apos;ve got your back!
               </p>
               <div className="flex justify-end border-t border-gray-100 pt-4">
-                <Button className="text-white px-8 py-6 rounded-full">
-                  Learn More...
-                </Button>
+                <Link href={"https://built.africa"}>
+                  <Button className="text-white px-8 py-6 rounded-full">
+                    Learn More...
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

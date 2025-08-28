@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { phone, email, slug } = await req.json();
+    const { phone = "", email, slug } = await req.json();
 
     if (phone || email) {
       const existingPotentialCustomer = await db.potentialCustomer.findFirst({
