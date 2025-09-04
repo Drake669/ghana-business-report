@@ -52,6 +52,10 @@ Best regards,
 The Built Team`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <img src="cid:logo" alt="Built Team Logo" style="max-width: 150px; height: auto;" />
+            </div>
+            
             <p style="color: #333; font-size: 16px; line-height: 1.6;">Hello,</p>
             
             <p style="color: #333; font-size: 16px; line-height: 1.6;">
@@ -76,6 +80,13 @@ The Built Team`,
         subject: emailContent.subject,
         text: emailContent.text,
         html: emailContent.html,
+        attachments: [
+          {
+            filename: "logo.png",
+            path: "./public/logo.png", // Path to your logo
+            cid: "logo", // Content ID for referencing in HTML
+          },
+        ],
       });
 
       const createPotentialCustomer = await db.potentialCustomer.create({
