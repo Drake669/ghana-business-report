@@ -41,8 +41,9 @@ export async function POST(req: Request) {
 
       const emailContent = {
         to: email,
-        subject: "You are on the waitlist for the SME Report",
-        text: `Hello,
+        subject:
+          "Congratulations! You are now on the waitlist for the SME Report",
+        text: `Hello there,
 
 Thank you for signing up for the SME Report. We have received your details and you are now on the waitlist.
 
@@ -52,6 +53,10 @@ Best regards,
 The Built Team`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <img src="cid:logo" alt="Built Team Logo" style="max-width: 150px; height: auto;" />
+            </div>
+            
             <p style="color: #333; font-size: 16px; line-height: 1.6;">Hello,</p>
             
             <p style="color: #333; font-size: 16px; line-height: 1.6;">
@@ -66,6 +71,35 @@ The Built Team`,
               Best regards,<br>
               The Built Team
             </p>
+            
+            <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+              <img src="cid:footer" alt="Footer" style="max-width: 100%; height: auto;" />
+              
+              <!-- Footer Content -->
+              <div style="padding: 20px 0; text-align: center;">
+                <p style="color: #64748b; font-size: 14px; margin: 0 0 15px 0; text-align: center;">
+                  Copyright © 2025 Built Financial Technologies.
+                </p>
+                
+            <div style="text-align: center; margin-bottom: 20px;">
+                  <a href="https://facebook.com/builtaccounting" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <img src="cid:facebook" alt="Facebook" style="width: 24px; height: 24px;" />
+                  </a>
+                  
+                  <a href="https://x.com/built_africa" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <img src="cid:twitter" alt="X (Twitter)" style="width: 24px; height: 24px;" />
+                  </a>
+                  
+                  <a href="https://instagram.com/builtaccounting" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <img src="cid:instagram" alt="Instagram" style="width: 24px; height: 24px;" />
+                  </a>
+                  
+                  <a href="https://linkedin.com/company/built-accounting" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <img src="cid:linkedin" alt="LinkedIn" style="width: 24px; height: 24px;" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         `,
       };
@@ -76,6 +110,38 @@ The Built Team`,
         subject: emailContent.subject,
         text: emailContent.text,
         html: emailContent.html,
+        attachments: [
+          {
+            filename: "logo.png",
+            path: "./public/logo.png",
+            cid: "logo",
+          },
+          {
+            filename: "footer.png",
+            path: "./public/footer.png",
+            cid: "footer",
+          },
+          {
+            filename: "facebook.png",
+            path: "./public/facebook.png",
+            cid: "facebook",
+          },
+          {
+            filename: "twitter.png",
+            path: "./public/twitter.png",
+            cid: "twitter",
+          },
+          {
+            filename: "instagram.png",
+            path: "./public/instagram.png",
+            cid: "instagram",
+          },
+          {
+            filename: "linked.png",
+            path: "./public/linked.png",
+            cid: "linkedin",
+          },
+        ],
       });
 
       const createPotentialCustomer = await db.potentialCustomer.create({

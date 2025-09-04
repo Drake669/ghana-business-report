@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { to, subject, text, html } = await request.json();
+    const { to, subject, text, html, attachments } = await request.json();
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -13,13 +13,16 @@ export async function POST(request: Request) {
       },
     });
 
-    const info = await transporter.sendMail({
+    const mailOptions = {
       from: `"This Is Ghana" <${process.env.GMAIL_USER}>`,
       to: to,
       subject: subject,
       text: text,
       html: html,
-    });
+      ...(attachments && attachments.length > 0 && { attachments }),
+    };
+
+    const info = await transporter.sendMail(mailOptions);
 
     return NextResponse.json({
       message: "Email sent successfully",
