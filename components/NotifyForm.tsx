@@ -19,29 +19,52 @@ export default function NotifyForm() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\+?\d{10,12}$/;
-    if (
-      !emailRegex.test(notifyInfo.email) ||
-      !phoneRegex.test(notifyInfo.phone)
-    ) {
-      toast.error("Please enter a valid email or phone number.");
+
+    if (!notifyInfo.email && !notifyInfo.phone) {
+      toast.error("Please enter either an email or phone number.");
+      setProcessingRequest(false);
+      return;
+    }
+
+    if (notifyInfo.email && !emailRegex.test(notifyInfo.email)) {
+      toast.error("Please enter a valid email address.");
+      setProcessingRequest(false);
+      return;
+    }
+
+    if (notifyInfo.phone && !phoneRegex.test(notifyInfo.phone)) {
+      toast.error("Please enter a valid phone number.");
       setProcessingRequest(false);
       return;
     }
 
     try {
       const updatedValues = {
-        email: notifyInfo.email,
-        phone: notifyInfo.phone,
+        email: notifyInfo.email || "",
+        phone: notifyInfo.phone || "",
         slug: slugify(notifyInfo.email || notifyInfo.phone),
       };
-      await axios.post(`/api/potentialcustomer/`, updatedValues);
 
-      setSubmitted(true);
-      toast.success("Thank you! We’ll notify you when we launch.");
+      const response = await axios.post(
+        `/api/potentialcustomer/`,
+        updatedValues
+      );
+
+      if (response.data.existing) {
+        // User already exists
+        toast.info(response.data.message);
+        setSubmitted(true);
+      } else {
+        // New user successfully added
+        toast.success(
+          "Thank you! We've sent you a welcome email and added you to the waitlist."
+        );
+        setSubmitted(true);
+      }
     } catch (error) {
       if (isAxiosError(error)) {
         if (error.response?.status === 400) {
-          toast.error(error.response.data);
+          toast.error(error.response.data.error || error.response.data);
         } else {
           toast.error("An unexpected error occurred. Please try again.");
         }
@@ -67,8 +90,8 @@ export default function NotifyForm() {
         onChange={(e) =>
           setNotifyInfo({ ...notifyInfo, phone: e.target.value })
         }
-        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 my-4 transition text-slate-900"
         required
+        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 my-4 transition text-slate-900"
       />
 
       <input
@@ -79,8 +102,8 @@ export default function NotifyForm() {
         onChange={(e) =>
           setNotifyInfo({ ...notifyInfo, email: e.target.value })
         }
-        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 mb-4 transition text-slate-900"
         required
+        className="w-full px-4 py-3 rounded-lg border bg-white placeholder:text-slate-500 mb-4 transition text-slate-900"
       />
 
       <button
