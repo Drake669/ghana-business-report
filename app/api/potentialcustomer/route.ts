@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import path from "path";
 
 export async function POST(req: Request) {
   try {
@@ -118,32 +119,32 @@ The Built Team`,
         attachments: [
           {
             filename: "logo.png",
-            path: "./public/logo.png",
+            path: path.join(process.cwd(), "public", "logo.png"),
             cid: "logo",
           },
           {
             filename: "footer.png",
-            path: "./public/footer.png",
+            path: path.join(process.cwd(), "public", "footer.png"),
             cid: "footer",
           },
           {
             filename: "facebook.png",
-            path: "./public/facebook.png",
+            path: path.join(process.cwd(), "public", "facebook.png"),
             cid: "facebook",
           },
           {
             filename: "twitter.png",
-            path: "./public/twitter.png",
+            path: path.join(process.cwd(), "public", "twitter.png"),
             cid: "twitter",
           },
           {
             filename: "instagram.png",
-            path: "./public/instagram.png",
+            path: path.join(process.cwd(), "public", "instagram.png"),
             cid: "instagram",
           },
           {
             filename: "linked.png",
-            path: "./public/linked.png",
+            path: path.join(process.cwd(), "public", "linked.png"),
             cid: "linkedin",
           },
         ],
