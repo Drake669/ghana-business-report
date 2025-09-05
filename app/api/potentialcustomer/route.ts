@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import path from "path";
 
 export async function POST(req: Request) {
   try {
@@ -44,7 +45,9 @@ export async function POST(req: Request) {
         const emailContent = {
           to: email,
           subject: "Thank you for your interest in the SME Report",
-          text: `Thank you for your interest in the SME Report.
+          text: `Hello there,
+
+Thank you for your interest in the SME Report.
 We hope you find the insights useful in helping you understand, start and grow your business. At Built, we are committed to supporting SMEs with the tools and resources they need to thrive.
 
 If you have any questions or would like to learn more about how Built can support your business, feel free to reach out.
@@ -55,6 +58,10 @@ Please find the SME Report attached.`,
               <div style="text-align: center; margin-bottom: 30px;">
                 <img src="cid:logo" alt="Built Team Logo" style="max-width: 150px; height: auto;" />
               </div>
+              
+              <p style="color: #333; font-size: 16px; line-height: 1.6;">
+                Hello there,
+              </p>
               
               <p style="color: #333; font-size: 16px; line-height: 1.6;">
                 Thank you for your interest in the SME Report.
@@ -113,37 +120,41 @@ Please find the SME Report attached.`,
           attachments: [
             {
               filename: "logo.png",
-              path: "./public/logo.png",
+              path: path.join(process.cwd(), "public", "logo.png"),
               cid: "logo",
             },
             {
               filename: "footer.png",
-              path: "./public/footer.png",
+              path: path.join(process.cwd(), "public", "footer.png"),
               cid: "footer",
             },
             {
               filename: "facebook.png",
-              path: "./public/facebook.png",
+              path: path.join(process.cwd(), "public", "facebook.png"),
               cid: "facebook",
             },
             {
               filename: "twitter.png",
-              path: "./public/twitter.png",
+              path: path.join(process.cwd(), "public", "twitter.png"),
               cid: "twitter",
             },
             {
               filename: "instagram.png",
-              path: "./public/instagram.png",
+              path: path.join(process.cwd(), "public", "instagram.png"),
               cid: "instagram",
             },
             {
               filename: "linked.png",
-              path: "./public/linked.png",
+              path: path.join(process.cwd(), "public", "linked.png"),
               cid: "linkedin",
             },
             {
               filename: "2025 Ghana Business Report.pdf",
-              path: "./public/ghana-business-report.pdf",
+              path: path.join(
+                process.cwd(),
+                "public",
+                "ghana-business-report.pdf"
+              ),
             },
           ],
         });
@@ -185,7 +196,9 @@ Please find the SME Report attached.`,
       const emailContent = {
         to: email,
         subject: "Thank you for your interest in the SME Report",
-        text: `Thank you for your interest in the SME Report.
+        text: `Hello there,
+
+Thank you for your interest in the SME Report.
 We hope you find the insights useful in helping you understand, start and grow your business. At Built, we are committed to supporting SMEs with the tools and resources they need to thrive.
 
 If you have any questions or would like to learn more about how Built can support your business, feel free to reach out.
@@ -196,6 +209,10 @@ Please find the SME Report attached.`,
             <div style="text-align: center; margin-bottom: 30px;">
               <img src="cid:logo" alt="Built Team Logo" style="max-width: 150px; height: auto;" />
             </div>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">
+              Hello there,
+            </p>
             
             <p style="color: #333; font-size: 16px; line-height: 1.6;">
               Thank you for your interest in the SME Report.
@@ -254,37 +271,41 @@ Please find the SME Report attached.`,
         attachments: [
           {
             filename: "logo.png",
-            path: "./public/logo.png",
+            path: path.join(process.cwd(), "public", "logo.png"),
             cid: "logo",
           },
           {
             filename: "footer.png",
-            path: "./public/footer.png",
+            path: path.join(process.cwd(), "public", "footer.png"),
             cid: "footer",
           },
           {
             filename: "facebook.png",
-            path: "./public/facebook.png",
+            path: path.join(process.cwd(), "public", "facebook.png"),
             cid: "facebook",
           },
           {
             filename: "twitter.png",
-            path: "./public/twitter.png",
+            path: path.join(process.cwd(), "public", "twitter.png"),
             cid: "twitter",
           },
           {
             filename: "instagram.png",
-            path: "./public/instagram.png",
+            path: path.join(process.cwd(), "public", "instagram.png"),
             cid: "instagram",
           },
           {
             filename: "linked.png",
-            path: "./public/linked.png",
+            path: path.join(process.cwd(), "public", "linked.png"),
             cid: "linkedin",
           },
           {
             filename: "2025 Ghana Business Report.pdf",
-            path: "./public/ghana-business-report.pdf",
+            path: path.join(
+              process.cwd(),
+              "public",
+              "ghana-business-report.pdf"
+            ),
           },
         ],
       });
