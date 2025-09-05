@@ -45,7 +45,7 @@ const TimelineCard: React.FC<{ step: TimelineStep }> = ({ step }) => (
 );
 
 const JourneyStart: React.FC<JourneyStartProps> = ({
-  title = "Your Entrepreneurial Journey Starts Here!",
+  title = "Your Entrepreneurial Journey Starts Here",
   subtitle = "Congratulations! You've absorbed everything you need to know about starting a business in Ghana. The opportunities are incredible, the support systems are in place, and the time is right.",
   timelineSteps = defaultTimelineSteps,
 }) => {

@@ -20,8 +20,8 @@ export default function HomePage() {
       <TaxComplianceSection />
       <BankingSection />
       <Hiring />
-      <GrowandSupport />
-      <JourneyStart />
+      {/* <GrowandSupport /> */}
+      {/* <JourneyStart /> */}
       <ReportDownloadSection />
       <FooterSection />
     </div>

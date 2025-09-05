@@ -75,7 +75,7 @@ const PensionSystemSection: React.FC = () => {
     {
       tier: "Tier 2",
       title: "Occupational Pension",
-      description: "Choose a provider",
+      description: "Choose a provider eg. People's Pension Trust",
     },
     {
       tier: "Tier 3",
@@ -103,23 +103,23 @@ const PensionSystemSection: React.FC = () => {
 
 const Hiring: React.FC = () => {
   const talentSources: ListItem[] = [
+    { text: "Vacancies in Ghana" },
     { text: "JobWeb Ghana - Top job portal" },
     { text: "LinkedIn - Professional networking" },
     { text: "University career centers" },
-    { text: "Industry associations" },
     { text: "Referral networks" },
   ];
 
   const employerResponsibilities: ListItem[] = [
     { text: "Register with SSNIT within 30 days" },
     { text: "Register employees with SSNIT and GRA" },
-    { text: "Deduct and remit SSNIT contributions (13%)" },
+    { text: "Deduct and remit SSNIT contributions (13.5%)" },
     { text: "Deduct and remit PAYE taxes" },
     { text: "Provide safe working conditions" },
   ];
 
   return (
-    <div className="mt-24">
+    <div className="mt-24" id="hiring">
       <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-6 leading-tight">
         Hiring and Employment
       </h2>

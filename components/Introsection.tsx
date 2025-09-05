@@ -32,7 +32,6 @@ export default function IntroSection() {
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <Link href={"https://built.africa"}>
             <Button className="text-white py-6 rounded-full flex items-center gap-2">
-              <Zap className="w-4 h-4" />
               Start your Journey Now
             </Button>
           </Link>
@@ -41,7 +40,6 @@ export default function IntroSection() {
               variant="outline"
               className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
             >
-              <Download className="w-4 h-4" />
               Download Full Report
             </Button>
           </Link>

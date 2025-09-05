@@ -103,7 +103,7 @@ export default function ReportDownloadSection() {
                 <div className="space-y-8">
                   <div className="space-y-4">
                     <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-                      There&apos;s more. Want a detailed version of this report?
+                      Want a full detailed version of this report?
                     </h1>
                   </div>
 

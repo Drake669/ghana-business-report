@@ -27,7 +27,10 @@ const BusinessRegistrationGuide = () => {
   );
 
   return (
-    <div className="mt-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div
+      className="mt-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto"
+      id="registration"
+    >
       <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
         Step-by-Step Business Registration Guide
       </h2>
@@ -40,7 +43,7 @@ const BusinessRegistrationGuide = () => {
       <div className="flex justify-center mb-12">
         <div className="flex bg-white border border-primary/20 rounded-full p-1">
           <TabButton tabKey="structure">1. Choose Structure</TabButton>
-          <TabButton tabKey="process">2. Registration Process</TabButton>
+          <TabButton tabKey="process">2. Registration Methods</TabButton>
         </div>
       </div>
 
@@ -58,14 +61,14 @@ const BusinessRegistrationGuide = () => {
             iconAlt="Handshake icon"
             title="Partnership"
             description="For 2+ partners sharing profits and responsibilities."
-            cost="GH₵250"
+            cost="GH₵250 - GH₵1000"
           />
           <BusinessStructure
             iconSrc="/Building.jpg"
             iconAlt="Building icon"
             title="Limited Company"
             description="Separate legal entity, limited liability protection."
-            cost="GH₵450 + 1% stamp duty"
+            cost="GH₵450 (1% stamp duty) - GH₵1000"
           />
         </div>
       )}

@@ -162,17 +162,16 @@ const InfoCard: React.FC<InfoCardProps> = ({
 
 const FundingTab: React.FC = () => {
   const governmentPrograms: string[] = [
-    "Ghana Investment Platform (GIP)",
-    "Presidential Pitch Competition",
+    "National Entrepreneurship and Innovation Programme (NEIP)",
     "MASLOC (Microfinance and Small Loans Centre)",
-    "Youth Enterprise Support (YES)",
+    "Ghana Enterprises Agency (GEA)",
   ];
 
   const privateInvestment: string[] = [
+    "MEST Africa Challenge",
     "Angel Investor Networks",
-    "Venture Capital Firms",
-    "Tech Incubators",
-    "Diaspora Investment Groups",
+    "Commercial Bank SME Lending",
+    "Microfinance Institution Services",
   ];
 
   return (
@@ -233,12 +232,10 @@ const MobileMoneyTab: React.FC = () => {
 };
 
 const BankingSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabId>("banking");
+  const [activeTab, setActiveTab] = useState<TabId>("funding");
 
   const tabs: Tab[] = [
-    { id: "banking", label: "Banking", component: BankingTab },
     { id: "funding", label: "Funding", component: FundingTab },
-    { id: "mobile-money", label: "Mobile Money", component: MobileMoneyTab },
   ];
 
   const ActiveComponent = tabs.find(
@@ -247,7 +244,7 @@ const BankingSection: React.FC = () => {
 
   return (
     <div className="mt-24">
-      <div className="flex justify-center mb-12">
+      {/* <div className="flex justify-center mb-12">
         <div className="flex bg-gray-100 rounded-full p-1">
           {tabs.map((tab: Tab) => (
             <TabButton
@@ -259,9 +256,11 @@ const BankingSection: React.FC = () => {
             </TabButton>
           ))}
         </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto lg:p-0 p-4">
+      </div> */}
+      <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
+        Funding
+      </h2>
+      <div className="max-w-7xl mx-auto lg:p-0 p-4" id="funding">
         {ActiveComponent && <ActiveComponent />}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const TaxComplianceSection = () => {
   return (
-    <div className="mt-24 max-w-7xl mx-auto px-4">
+    <div className="mt-24 max-w-7xl mx-auto px-4" id="tax-and-compliance">
       <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
         Tax and Compliance Requirements
       </h2>
@@ -27,7 +27,7 @@ const TaxComplianceSection = () => {
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    Great News: Tax Reforms for 2025!
+                    Great News: Tax Reforms for 2025
                   </h3>
                 </div>
 
@@ -59,7 +59,7 @@ const TaxComplianceSection = () => {
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    Tax Calendar - Mark Your Dates!
+                    Tax Calendar - Mark Your Dates
                   </h3>
                 </div>
 
@@ -94,12 +94,12 @@ const TaxComplianceSection = () => {
                 "/NewsDocument.jpg",
                 "News Document icon",
                 "15%",
-                "VAT (Reduced from 22%)"
+                "VAT (additional levies which adds up to 21.9%)"
               )}
               {taxRateCard(
                 "/Shield.jpg",
                 "Shield icon",
-                "13%",
+                "13.5%",
                 "SSNIT Contributions"
               )}
             </div>
