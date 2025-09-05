@@ -62,7 +62,7 @@ The Built Team`,
               <img src="cid:logo" alt="Built Team Logo" style="max-width: 150px; height: auto;" />
             </div>
             
-            <p style="color: #333; font-size: 16px; line-height: 1.6;">Hello,</p>
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">Hello there,</p>
             
             <p style="color: #333; font-size: 16px; line-height: 1.6;">
               Thank you for signing up for the SME Report. We have received your details and you are now on the waitlist.
