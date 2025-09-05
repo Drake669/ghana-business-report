@@ -25,19 +25,19 @@ export default function ReportDownloadSection() {
 
       await axios.post(`/api/potentialcustomer/`, updatedValues);
 
-      // Success → download PDF
-      const link = document.createElement("a");
-      link.href = "/ghana-business-report.pdf";
-      link.download = "ghana-business-report.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // // Success → download PDF
+      // const link = document.createElement("a");
+      // link.href = "/ghana-business-report.pdf";
+      // link.download = "ghana-business-report.pdf";
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
 
-      toast.success("Report is downloading!");
+      toast.success("We have emailed the report to you!");
     } catch (error) {
       if (isAxiosError(error)) {
         if (error.response?.status === 400) {
-          toast.error(error.response.data);
+          toast.error(error.response.data.error);
         } else {
           toast.error("An unexpected error occurred. Please try again.");
         }
