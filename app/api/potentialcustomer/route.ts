@@ -39,6 +39,10 @@ export async function POST(req: Request) {
         },
       });
 
+      // Verify the connection configuration before sending
+      await transporter.verify();
+      console.log("SMTP connection verified successfully");
+
       const emailContent = {
         to: email,
         subject:
@@ -104,7 +108,8 @@ The Built Team`,
         `,
       };
 
-      await transporter.sendMail({
+      // Send the email and wait for completion
+      const info = await transporter.sendMail({
         from: `"Built Team" <${process.env.GMAIL_USER}>`,
         to: emailContent.to,
         subject: emailContent.subject,
@@ -143,6 +148,8 @@ The Built Team`,
           },
         ],
       });
+
+      console.log("Email sent successfully:", info.messageId);
 
       const createPotentialCustomer = await db.potentialCustomer.create({
         data: {
