@@ -52,7 +52,7 @@ const cards: InfoCardProps[] = [
     iconAlt: "Money icon",
     title: "Diaspora Capital Surge",
     description:
-      "$6.65 billion in remittances (6% of GDP) is flooding the market – that's more than foreign direct investment! Global Ghanaians are investing back home like never before.",
+      "$4.7 billion in remittances (5% of GDP) is flooding the market – that's more than foreign direct investment! Global Ghanaians are investing back home like never before.",
     imageSrc: "/Woman with smart phone in the marketplace.jpg",
     imageAlt: "Woman with smartphone in marketplace",
   },

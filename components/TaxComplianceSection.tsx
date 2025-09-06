@@ -38,7 +38,7 @@ const TaxComplianceSection = () => {
                   </li>
                   <li className={listItemClasses}>
                     <div className={bulletClasses}></div>
-                    Reduction of VAT from 22% to 15%
+                    Reduction of VAT from 22% to 20%
                   </li>
                   <li className={listItemClasses}>
                     <div className={bulletClasses}></div>
@@ -94,7 +94,7 @@ const TaxComplianceSection = () => {
                 "/NewsDocument.jpg",
                 "News Document icon",
                 "15%",
-                "VAT (additional levies which adds up to 21.9%)"
+                "VAT (After applying GETFUND 2.5%, NHIL 2.5% & COVID-Levy 1%)"
               )}
               {taxRateCard(
                 "/Shield.jpg",
