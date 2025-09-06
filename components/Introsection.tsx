@@ -7,7 +7,7 @@ export default function IntroSection() {
   return (
     <>
       <main className="flex flex-col items-center justify-center px-6 py-16 max-w-4xl mx-auto text-center">
-        <div className="border-primary/30 border text-primary px-6 py-2 rounded-full text-sm font-medium mb-8 flex items-center gap-2">
+        <div className="border-primary/30 border text-primary px-6 py-2 rounded-full lg:text-sm text-xs font-medium mb-8 flex items-center gap-2">
           <Image
             src="/icon.ico"
             alt="Built Financial Technologies"

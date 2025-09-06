@@ -107,7 +107,7 @@ const InspirationMessage: React.FC = () => (
 
 const FooterSection: React.FC = () => {
   return (
-    <div className="relative mt-24 mb-10 max-w-7xl mx-auto bg-gradient-to-t rounded-3xl from-blue-50 via-primary-10 to-primary-10 pt-16 px-4">
+    <div className="relative mt-24 lg:mb-10 max-w-7xl mx-auto bg-gradient-to-t rounded-3xl from-blue-50 via-primary-10 to-primary-10 pt-16 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
           Ready to Start Your Journey with Built Financial Technologies?
