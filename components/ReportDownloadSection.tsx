@@ -25,15 +25,15 @@ export default function ReportDownloadSection() {
 
       await axios.post(`/api/potentialcustomer/`, updatedValues);
 
-      // // Success → download PDF
-      // const link = document.createElement("a");
-      // link.href = "/ghana-business-report.pdf";
-      // link.download = "ghana-business-report.pdf";
-      // document.body.appendChild(link);
-      // link.click();
-      // document.body.removeChild(link);
+      // Success → download PDF
+      const link = document.createElement("a");
+      link.href = "/ghana-business-report.pdf";
+      link.download = "2025 Ghana Business Report.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-      toast.success("We have emailed the report to you!");
+      toast.success("Report downloaded successfully!");
     } catch (error) {
       if (isAxiosError(error)) {
         if (error.response?.status === 400) {
