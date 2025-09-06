@@ -1,26 +1,66 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, Phone } from "lucide-react";
 import axios, { isAxiosError } from "axios";
 import { slugify } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function ReportDownloadSection() {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Phone number validation for Ghana format
+  const validatePhoneNumber = (phoneNumber: string): boolean => {
+    // Remove all non-digit characters
+    const cleaned = phoneNumber.replace(/\D/g, "");
+
+    // Ghana phone number patterns:
+    // - 233XXXXXXXXX (with country code)
+    // - 0XXXXXXXXX (local format)
+    // - XXXXXXXXX (without leading zero)
+    const ghanaPattern = /^(233|0)?[2-9]\d{8}$/;
+
+    return ghanaPattern.test(cleaned);
+  };
 
   const handleDownload = async (
     e: FormEvent<HTMLInputElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
-    if (!email) return;
+
+    // Validate that both fields are provided
+    if (!email) {
+      toast.error("Email address is required");
+      return;
+    }
+
+    if (!phone) {
+      toast.error("Phone number is required");
+      return;
+    }
+
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    // Validate phone number format
+    if (!validatePhoneNumber(phone)) {
+      toast.error(
+        "Please enter a valid Ghana phone number (e.g., 0241234567 or +233241234567)"
+      );
+      return;
+    }
 
     setIsSubmitting(true);
     try {
       const updatedValues = {
         email,
-        slug: slugify(email),
+        phone,
+        slug: slugify(email || phone),
       };
 
       await axios.post(`/api/potentialcustomer/`, updatedValues);
@@ -110,7 +150,7 @@ export default function ReportDownloadSection() {
                   <div className="space-y-6">
                     <div className="space-y-2">
                       <div className="text-sm font-medium text-slate-300">
-                        Enter email address
+                        Email address *
                       </div>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -128,9 +168,29 @@ export default function ReportDownloadSection() {
                       </div>
                     </div>
 
+                    <div className="space-y-2">
+                      <div className="text-sm font-medium text-slate-300">
+                        Phone number *
+                      </div>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                        <input
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder="0241234567 or +233241234567"
+                          className="w-full pl-12 pr-4 py-4 bg-slate-800/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                          onKeyDown={(e) =>
+                            e.key === "Enter" && handleDownload(e)
+                          }
+                          required
+                        />
+                      </div>
+                    </div>
+
                     <button
                       onClick={handleDownload}
-                      disabled={!email || isSubmitting}
+                      disabled={!email || !phone || isSubmitting}
                       className="w-full bg-secondary hover:bg-secondary/90 disabled:bg-slate-600 disabled:cursor-not-allowed cursor-pointer text-primary font-semibold py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
                       {isSubmitting ? (
