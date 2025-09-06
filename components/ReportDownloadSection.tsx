@@ -33,7 +33,7 @@ export default function ReportDownloadSection() {
       link.click();
       document.body.removeChild(link);
 
-      toast.success("Report downloaded successfully!");
+      toast.success("Report has started downloading!");
     } catch (error) {
       if (isAxiosError(error)) {
         if (error.response?.status === 400) {

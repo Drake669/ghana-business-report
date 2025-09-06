@@ -219,9 +219,6 @@ Thank you for your interest in our SME insights.`,
               If you have any questions or would like to learn more about how Built can support your business, feel free to reach out.
             </p>
             
-            <p style="color: #333; font-size: 16px; line-height: 1.6; margin-top: 30px;">
-              Please find the SME Report attached.
-            </p>
             
             <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
               <img src="cid:footer" alt="Footer" style="max-width: 100%; height: auto;" />
