@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -17,46 +18,36 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center space-x-8">
           <a
-            href="#"
+            href="#registration"
             className="text-slate-600 hover:text-slate-800 transition-colors"
           >
             Registration
           </a>
           <a
-            href="#"
+            href="#tax-and-compliance"
             className="text-slate-600 hover:text-slate-800 transition-colors"
           >
             Tax & Compliance
           </a>
           <a
-            href="#"
+            href="#funding"
             className="text-slate-600 hover:text-slate-800 transition-colors"
           >
-            Banking & Funding
+            Funding
           </a>
           <a
-            href="#"
+            href="#hiring"
             className="text-slate-600 hover:text-slate-800 transition-colors"
           >
             Hiring
           </a>
-          <a
-            href="#"
-            className="text-slate-600 hover:text-slate-800 transition-colors"
-          >
-            Permits
-          </a>
-          <a
-            href="#"
-            className="text-slate-600 hover:text-slate-800 transition-colors"
-          >
-            Resources
-          </a>
         </nav>
 
-        <Button className="text-white px-8 py-6 rounded-full">
-          Get Started
-        </Button>
+        <Link href={"https://built.africa"} target="_blank">
+          <Button className="text-white px-8 py-6 rounded-full">
+            Get Started
+          </Button>
+        </Link>
       </div>
     </header>
   );

@@ -13,7 +13,7 @@ model PotentialCustomer {
   slug       String    @db.Text
   phone    String    @db.Text
   email    String    @db.Text
-
+  hasReceivedReport Boolean @default(false)
 
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt

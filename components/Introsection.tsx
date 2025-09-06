@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Zap, Download } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function IntroSection() {
   return (
     <>
       <main className="flex flex-col items-center justify-center px-6 py-16 max-w-4xl mx-auto text-center">
-        <div className="border-primary/30 border text-primary px-6 py-2 rounded-full text-sm font-medium mb-8 flex items-center gap-2">
+        <div className="border-primary/30 border text-primary px-6 py-2 rounded-full lg:text-sm text-xs font-medium mb-8 flex items-center gap-2">
           <Image
             src="/icon.ico"
             alt="Built Financial Technologies"
@@ -17,9 +18,9 @@ export default function IntroSection() {
         </div>
 
         <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 leading-16">
-          Start Your Dream
+          2025
           <br />
-          Business in Ghana
+          Ghana Business Report
         </h1>
 
         <p className="text-lg text-slate-600 mb-12 max-w-2xl leading-relaxed">
@@ -29,17 +30,19 @@ export default function IntroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
-          <Button className="text-white py-6 rounded-full flex items-center gap-2">
-            <Zap className="w-4 h-4" />
-            Start your Journey Now
-          </Button>
-          <Button
-            variant="outline"
-            className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
-          >
-            <Download className="w-4 h-4" />
-            Download Full Report
-          </Button>
+          <Link href={"https://built.africa"}>
+            <Button className="text-white py-6 rounded-full flex items-center gap-2">
+              Start your Journey Now
+            </Button>
+          </Link>
+          <Link href="#download">
+            <Button
+              variant="outline"
+              className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
+            >
+              Download Full Report
+            </Button>
+          </Link>
         </div>
       </main>
 

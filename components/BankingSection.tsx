@@ -57,35 +57,6 @@ const ListItem: React.FC<ListItemProps> = ({ children }) => (
   </li>
 );
 
-const InfoCard: React.FC<InfoCardProps> = ({
-  title,
-  items,
-  imageSrc,
-  imageAlt,
-}) => (
-  <div className="flex-1 border border-gray-200 rounded-2xl p-6 bg-white">
-    <div className="flex gap-6 items-start">
-      <div className="flex-1">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">{title}</h3>
-        <ul className="space-y-3 text-gray-600">
-          {items.map((item: string, index: number) => (
-            <ListItem key={index}>{item}</ListItem>
-          ))}
-        </ul>
-      </div>
-      <div className="w-48 flex-shrink-0">
-        <div className="rounded-2xl overflow-hidden">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="w-full h-48 object-cover"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 const MobileMoneyCard: React.FC<MobileMoneyCardProps> = ({
   logo,
   title,
@@ -99,6 +70,17 @@ const MobileMoneyCard: React.FC<MobileMoneyCardProps> = ({
     <p className="text-gray-600">{subtitle}</p>
   </div>
 );
+
+interface InfoCardProps {
+  title: string;
+  items: string[];
+  imageSrc: string;
+  imageAlt: string;
+}
+
+interface ListItemProps {
+  children: React.ReactNode;
+}
 
 const BankingTab: React.FC = () => {
   const bankAccountRequirements: string[] = [
@@ -118,7 +100,7 @@ const BankingTab: React.FC = () => {
   ];
 
   return (
-    <div className="flex gap-12 lg:gap-16">
+    <div className="flex flex-col md:flex-row items-center lg:items-stretch justify-center md:max-w-7xl max-w-lg mx-auto gap-6 lg:gap-3">
       <InfoCard
         title="Business Bank Account Requirements"
         items={bankAccountRequirements}
@@ -135,23 +117,65 @@ const BankingTab: React.FC = () => {
   );
 };
 
+const InfoCard: React.FC<InfoCardProps> = ({
+  title,
+  items,
+  imageSrc,
+  imageAlt,
+}) => (
+  <div className="flex-1 border border-gray-200 rounded-2xl bg-white overflow-hidden">
+    <div className="lg:hidden flex flex-col">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        className="w-full aspect-video object-cover"
+      />
+      <div className="p-4">
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">{title}</h3>
+        <ul className="space-y-2 text-gray-600">
+          {items.map((item: string, index: number) => (
+            <ListItem key={index}>{item}</ListItem>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div className="hidden lg:flex h-full p-1 gap-6">
+      <div className="flex-1 flex flex-col ml-4 mt-3">
+        <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
+        <ul className="space-y-1 text-gray-600">
+          {items.map((item: string, index: number) => (
+            <ListItem key={index}>{item}</ListItem>
+          ))}
+        </ul>
+      </div>
+      <div className="w-60 xl:w-72 flex-shrink-0">
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          className="w-full h-[252px] object-cover rounded-lg"
+        />
+      </div>
+    </div>
+  </div>
+);
+
 const FundingTab: React.FC = () => {
   const governmentPrograms: string[] = [
-    "Ghana Investment Platform (GIP)",
-    "Presidential Pitch Competition",
+    "National Entrepreneurship and Innovation Programme (NEIP)",
     "MASLOC (Microfinance and Small Loans Centre)",
-    "Youth Enterprise Support (YES)",
+    "Ghana Enterprises Agency (GEA)",
   ];
 
   const privateInvestment: string[] = [
+    "MEST Africa Challenge",
     "Angel Investor Networks",
-    "Venture Capital Firms",
-    "Tech Incubators",
-    "Diaspora Investment Groups",
+    "Commercial Bank SME Lending",
+    "Microfinance Institution Services",
   ];
 
   return (
-    <div className="flex gap-12 lg:gap-16">
+    <div className="flex flex-col md:flex-row items-center lg:items-stretch justify-center md:max-w-7xl max-w-lg mx-auto gap-6 lg:gap-3">
       <InfoCard
         title="Government Programs"
         items={governmentPrograms}
@@ -208,12 +232,10 @@ const MobileMoneyTab: React.FC = () => {
 };
 
 const BankingSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabId>("banking");
+  const [activeTab, setActiveTab] = useState<TabId>("funding");
 
   const tabs: Tab[] = [
-    { id: "banking", label: "Banking", component: BankingTab },
     { id: "funding", label: "Funding", component: FundingTab },
-    { id: "mobile-money", label: "Mobile Money", component: MobileMoneyTab },
   ];
 
   const ActiveComponent = tabs.find(
@@ -222,7 +244,7 @@ const BankingSection: React.FC = () => {
 
   return (
     <div className="mt-24">
-      <div className="flex justify-center mb-12">
+      {/* <div className="flex justify-center mb-12">
         <div className="flex bg-gray-100 rounded-full p-1">
           {tabs.map((tab: Tab) => (
             <TabButton
@@ -234,9 +256,11 @@ const BankingSection: React.FC = () => {
             </TabButton>
           ))}
         </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto">
+      </div> */}
+      <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
+        Funding
+      </h2>
+      <div className="max-w-7xl mx-auto lg:p-0 p-4" id="funding">
         {ActiveComponent && <ActiveComponent />}
       </div>
     </div>

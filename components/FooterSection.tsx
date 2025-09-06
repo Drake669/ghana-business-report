@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { Phone, Zap } from "lucide-react";
+import Link from "next/link";
 
 interface ServiceItem {
   text: string;
@@ -69,18 +69,24 @@ const ContactSection: React.FC = () => (
         </div>
       ))}
     </div>
-    <div className="space-y-4">
-      <Button className="text-white py-6 rounded-full flex items-center gap-2">
-        <Zap className="w-4 h-4" />
-        Start your Journey Now
-      </Button>
-      <Button
-        variant="outline"
-        className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
+    <div className="flex flex-col">
+      <Link href={"https://built.africa"} target="_blank">
+        <Button className="text-white py-6 rounded-full flex items-center gap-2">
+          Start your Journey Now
+        </Button>
+      </Link>
+      <Link
+        href={"https://built.africa/contact"}
+        target="_blank"
+        className="mt-4"
       >
-        <Phone className="w-4 h-4" />
-        Contact Built Official
-      </Button>
+        <Button
+          variant="outline"
+          className="py-6 rounded-full flex items-center gap-2 border-primary text-primary"
+        >
+          Contact Built Official
+        </Button>
+      </Link>
     </div>
   </div>
 );
@@ -101,7 +107,7 @@ const InspirationMessage: React.FC = () => (
 
 const FooterSection: React.FC = () => {
   return (
-    <div className="relative mt-24 mb-10 max-w-7xl mx-auto bg-gradient-to-t rounded-3xl from-blue-50 via-primary-10 to-primary-10 pt-16 px-4">
+    <div className="relative mt-24 lg:mb-10 max-w-7xl mx-auto bg-gradient-to-t rounded-3xl from-blue-50 via-primary-10 to-primary-10 pt-16 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-primary mb-8 max-w-4xl mx-auto leading-tight">
           Ready to Start Your Journey with Built Financial Technologies?
