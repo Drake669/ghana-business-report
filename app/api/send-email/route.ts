@@ -13,6 +13,10 @@ export async function POST(request: Request) {
       },
     });
 
+    // Verify the connection configuration before sending
+    await transporter.verify();
+    console.log("SMTP connection verified successfully");
+
     const mailOptions = {
       from: `"This Is Ghana" <${process.env.GMAIL_USER}>`,
       to: to,
@@ -22,7 +26,9 @@ export async function POST(request: Request) {
       ...(attachments && attachments.length > 0 && { attachments }),
     };
 
+    // Send the email and wait for completion
     const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully:", info.messageId);
 
     return NextResponse.json({
       message: "Email sent successfully",
